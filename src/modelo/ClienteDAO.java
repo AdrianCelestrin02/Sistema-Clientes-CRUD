@@ -1,3 +1,6 @@
+/**
+ * @author Adrián Celestrín
+ */
 package modelo;
 
 import java.sql.PreparedStatement;
@@ -8,7 +11,10 @@ import java.sql.Statement;
 public class ClienteDAO {
 
     private ConexionBD conexionBD;
-
+    
+    /**
+     * inicializar la conexion
+     */
     public ClienteDAO() {
 
         try {
@@ -56,7 +62,7 @@ public class ClienteDAO {
             while (rs.next()) {
                 String dni = rs.getString("DNI");
                 String nombre = rs.getString("NOMBRE");
-                String apellidos = rs.getString("APELLIDOS");
+                String apellidos = rs.getString("APELIIDOS");
                 int edad = rs.getInt("EDAD");
 
                 System.out.println(dni + " - " + nombre + " - " + apellidos + " - " + edad);
@@ -86,6 +92,7 @@ public class ClienteDAO {
             System.out.println("Error UPDATE: " + e.getMessage());
         }
     }
+    //DELETE
     public void borrar(String dni) {
 
         String sql = "DELETE FROM CLIENTES WHERE DNI = ?";

@@ -1,6 +1,8 @@
+/**
+ * @author Adrián Celestrín
+ */
 package vista;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import excepciones.CampoErroneoException;
 import excepciones.DniInvalidoException;
+import modelo.ClienteDAO;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -90,10 +93,8 @@ public class VentanaClientes extends JFrame {
 		
 		btnEnviar.addActionListener(e->{
 			try {
-				devolverNombre();
-				devolverApellidos();
-				devolverDNI();
-				devolverEdad();
+				ClienteDAO c=new ClienteDAO();
+				c.insertar(devolverDNI(), devolverNombre(),devolverApellidos() , devolverEdad());
 				JOptionPane.showMessageDialog(null, "Cliente Registrado","OK",JOptionPane.INFORMATION_MESSAGE);
 			}catch(Exception ex) {
 				JOptionPane.showMessageDialog(null, "Error en los Datos","Error",JOptionPane.WARNING_MESSAGE);
@@ -119,7 +120,7 @@ public class VentanaClientes extends JFrame {
 	}
 	
 	public String devolverDNI() throws DniInvalidoException{
-		if(!validarDNI(dniField.getText())) {
+		if(!validarDNI(dniField.getText())&& !dniField.getText().equals("")) {
 			throw new DniInvalidoException("DNI Invalido");
 		}
 		else{

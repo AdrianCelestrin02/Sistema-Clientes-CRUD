@@ -1,11 +1,24 @@
+/**
+ * @author Adrián Celestrín
+ */
 package modelo;
 
 public class Cliente {
+	/**
+	 * Atributos de Clase
+	 */
 	private String dni;
 	private String nomnbre;
 	private String apellidos;
 	private int edad;
 	
+	/**
+	 * 
+	 * @param dni
+	 * @param nomnbre
+	 * @param apellidos
+	 * @param edad
+	 */
 	public Cliente(String dni, String nomnbre, String apellidos, int edad) {
 		this.dni = dni;
 		this.nomnbre = nomnbre;

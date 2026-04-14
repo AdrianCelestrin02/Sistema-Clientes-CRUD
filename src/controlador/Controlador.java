@@ -1,3 +1,7 @@
+
+/**
+ * @author Adrián Celestrín
+ */
 package controlador;
 
 import excepciones.CampoErroneoException;
@@ -7,28 +11,33 @@ import vista.VentanaClientes;
 
 public class Controlador {
 
+	/**
+	 * 
+	 * @param args
+	 * @throws DniInvalidoException
+	 * @throws CampoErroneoException
+	 */
 	public static void main(String[] args) throws DniInvalidoException, CampoErroneoException {
 		VentanaClientes v=new VentanaClientes();
 		ClienteDAO operadorBD=new ClienteDAO();
+		int opcion=0;
 		
-		System.out.println("BIENVENIDOS AL SISTEMA DE GESTIÓN DE CLIENTES");
-		System.out.println("--------------");
-		System.out.println("------OPCIONES--------");
-		System.out.println("1-Registrar Cliente");
-		System.out.println("2-Actualizar Cliente");
-		System.out.println("3-Borrar Cliente");
-		System.out.println("4-Mostrar los Clientes");
-		System.out.println("5-SALIR");
-		System.out.println("----------");
-		int opcion=Leer.leerEntero("ELIGE LA OPCION: ");
 		
 		do{
+			System.out.println("BIENVENIDOS AL SISTEMA DE GESTIÓN DE CLIENTES");
+			System.out.println("--------------");
+			System.out.println("------OPCIONES--------");
+			System.out.println("1-Registrar Cliente");
+			System.out.println("2-Actualizar Cliente");
+			System.out.println("3-Borrar Cliente");
+			System.out.println("4-Mostrar los Clientes");
+			System.out.println("5-SALIR");
+			System.out.println("----------");
+			opcion=Leer.leerEntero("ELIGE LA OPCION: ");
 			switch(opcion) {
 			
 			case 1:
 				v.setVisible(true);
-				operadorBD.insertar(v.devolverDNI(), v.devolverNombre(), v.devolverApellidos(),v.devolverEdad());
-				v.setVisible(false);
 				break;
 			
 			case 2:

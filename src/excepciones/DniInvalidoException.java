@@ -1,3 +1,6 @@
+/**
+ * @author Adrián Celestrín
+ */
 package excepciones;
 
 public class DniInvalidoException extends Exception {
