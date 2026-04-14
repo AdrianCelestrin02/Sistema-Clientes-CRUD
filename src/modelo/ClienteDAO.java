@@ -1,0 +1,107 @@
+package modelo;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ClienteDAO {
+
+    private ConexionBD conexionBD;
+
+    public ClienteDAO() {
+
+        try {
+            conexionBD = new ConexionBD(
+                "jdbc:oracle:thin:@localhost:1521:xe",
+                "bdjava",
+                "bdjava"
+            );
+
+        } catch (SQLException e) {
+            System.out.println("Error al conectar con la BD: " + e.getMessage());
+        }
+        
+      
+    }
+    public void insertar(String dni, String nombre, String apellidos, int edad) {
+
+        String sql = "INSERT INTO CLIENTES VALUES (?, ?, ?, ?)";
+
+        try {
+           PreparedStatement ps =conexionBD.getConexion().prepareStatement(sql);
+
+            ps.setString(1, dni);
+            ps.setString(2, nombre);
+            ps.setString(3, apellidos);
+            ps.setInt(4, edad);
+
+            int filas = ps.executeUpdate();
+            System.out.println("Filas insertadas: " + filas);
+
+        } catch (Exception e) {
+            System.out.println("Error INSERT: " + e.getMessage());
+        }
+    }
+    //READ
+    public void leer() {
+
+        String sql = "SELECT * FROM CLIENTES";
+
+        try {
+           PreparedStatement ps =conexionBD.getConexion().prepareStatement(sql);
+
+           ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String dni = rs.getString("DNI");
+                String nombre = rs.getString("NOMBRE");
+                String apellidos = rs.getString("APELLIDOS");
+                int edad = rs.getInt("EDAD");
+
+                System.out.println(dni + " - " + nombre + " - " + apellidos + " - " + edad);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+        }
+    }
+    
+    
+    //UPDATE
+    public void actualizarEdad(String dni, int nuevaEdad) {
+
+        String sql = "UPDATE CLIENTES SET EDAD = ? WHERE DNI = ?";
+
+        try {
+           PreparedStatement ps =conexionBD.getConexion().prepareStatement(sql);
+
+            ps.setInt(1, nuevaEdad);
+            ps.setString(2, dni);
+
+            int filas = ps.executeUpdate();
+            System.out.println("Filas actualizadas: " + filas);
+
+        } catch (Exception e) {
+            System.out.println("Error UPDATE: " + e.getMessage());
+        }
+    }
+    public void borrar(String dni) {
+
+        String sql = "DELETE FROM CLIENTES WHERE DNI = ?";
+
+        try {
+            PreparedStatement ps =  conexionBD.getConexion().prepareStatement(sql);
+
+            ps.setString(1, dni);
+
+            int filas = ps.executeUpdate();
+            System.out.println("Filas eliminadas: " + filas);
+
+        } catch (Exception e) {
+            System.out.println("Error DELETE: " + e.getMessage());
+        }
+    }
+    
+    
+}
