@@ -6,13 +6,13 @@ Proyecto en Java desarrollado con arquitectura **MVC**, interfaz gráfica con **
 
 #  Funcionalidades
 
-- ✔ Registro de clientes (CREATE)
-- ✔ Consulta de clientes (READ)
-- ✔ Actualización de edad (UPDATE)
-- ✔ Eliminación de clientes (DELETE)
-- ✔ Validación de datos (DNI, campos obligatorios)
-- ✔ Excepciones personalizadas
-- ✔ Interfaz gráfica con Swing
+- Registro de clientes (CREATE)
+- Consulta de clientes (READ)
+- Actualización de edad (UPDATE)
+-  Eliminación de clientes (DELETE)
+- Validación de datos (DNI, campos obligatorios)
+-  Excepciones personalizadas
+- Interfaz gráfica con Swing
 
 ---
 
