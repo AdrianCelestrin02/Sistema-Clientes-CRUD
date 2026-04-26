@@ -111,6 +111,10 @@ public class VentanaClientes extends JFrame {
 		
 	}
 	
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
+	}
+	
 	public String devolverNombre() throws CampoErroneoException {
 		String regex=".*\\\\d.*";
 		if(nombreField.getText().matches(regex)){
@@ -152,5 +156,15 @@ public class VentanaClientes extends JFrame {
 	    String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
 	    char letraCorrecta = letras.charAt(numero % 23);
 	    return letra == letraCorrecta;
+	}
+	
+	public String recibirDNI(String mensaje) {
+		String resultado=JOptionPane.showInputDialog(null,mensaje);
+		return resultado;
+	}
+	
+	public int recibirEdad() {
+		int resultado=Integer.parseInt(JOptionPane.showInputDialog(null,"Introduce la nueva edad"));
+		return resultado;
 	}
 }

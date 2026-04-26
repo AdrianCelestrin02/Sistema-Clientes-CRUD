@@ -75,26 +75,27 @@ public class ClienteDAO {
     
     
     //UPDATE
-    public void actualizarEdad(String dni, int nuevaEdad) {
+    public int actualizarEdad(String dni, int nuevaEdad) {
 
         String sql = "UPDATE CLIENTES SET EDAD = ? WHERE DNI = ?";
-
+        int filas=0;
         try {
            PreparedStatement ps =conexionBD.getConexion().prepareStatement(sql);
 
             ps.setInt(1, nuevaEdad);
             ps.setString(2, dni);
 
-            int filas = ps.executeUpdate();
-            System.out.println("Filas actualizadas: " + filas);
+             filas = ps.executeUpdate();
+             
 
         } catch (Exception e) {
             System.out.println("Error UPDATE: " + e.getMessage());
         }
+        return filas;
     }
     //DELETE
-    public void borrar(String dni) {
-
+    public int borrar(String dni) {
+        int filas=0;
         String sql = "DELETE FROM CLIENTES WHERE DNI = ?";
 
         try {
@@ -102,12 +103,13 @@ public class ClienteDAO {
 
             ps.setString(1, dni);
 
-            int filas = ps.executeUpdate();
+            filas = ps.executeUpdate();
             System.out.println("Filas eliminadas: " + filas);
 
         } catch (Exception e) {
             System.out.println("Error DELETE: " + e.getMessage());
         }
+        return filas;
     }
     
     

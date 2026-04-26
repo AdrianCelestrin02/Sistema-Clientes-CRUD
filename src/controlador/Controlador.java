@@ -41,12 +41,14 @@ public class Controlador {
 				break;
 			
 			case 2:
-				String dni=Leer.leerString("Introduce el DNI del cliente que quieres modificar");
-				int nuevaEdad=Leer.leerEntero("Introduce la nueva edad");
-				operadorBD.actualizarEdad(dni, nuevaEdad);
+				String dni=v.recibirDNI("Introduce el DNI que quieres modificar");
+				int nuevaEdad=v.recibirEdad();
+				int filas=operadorBD.actualizarEdad(dni, nuevaEdad);
+				v.mostrarMensaje("Clientes actualizados: "+ filas);
 				break;
+			
 			case 3:
-				String dniB=Leer.leerString("Introduce el DNI del cliente que quieres borrar");
+				String dniB=v.recibirDNI("Introduce el DNI del cliente que quieres borrar");
 				operadorBD.borrar(dniB);
 				break;
 			case 4:

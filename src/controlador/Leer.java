@@ -1,19 +1,20 @@
 package controlador;
 
+
 import java.util.Scanner;
 
 public class Leer {
 	static Scanner  teclado= new Scanner (System.in);
-	
+
 	//metodo que pide un entero por teclado  
 	public static int leerEntero()  {
-		
+
 		System.out.println("Introduce un numero entero");
 		int n;
 		n= teclado.nextInt();
 		teclado.nextLine();
 		return n;
-		
+
 	}
 	//metodo que pide un entero por teclado y lo devuelve 
 	//aqui le pasamos como parametro el mensaje que queremos que muestre al pedir el numero 
@@ -40,6 +41,8 @@ public class Leer {
 		String s="";
 		s= teclado.nextLine();
 		return s;
-		
+
 	}
 }
+
+
