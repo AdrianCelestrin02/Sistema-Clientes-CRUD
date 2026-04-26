@@ -8,6 +8,7 @@ import excepciones.CampoErroneoException;
 import excepciones.DniInvalidoException;
 import modelo.ClienteDAO;
 import vista.VentanaClientes;
+import vista.VentanaLeer;
 
 public class Controlador {
 
@@ -49,11 +50,15 @@ public class Controlador {
 			
 			case 3:
 				String dniB=v.recibirDNI("Introduce el DNI del cliente que quieres borrar");
-				operadorBD.borrar(dniB);
+				int filasB=operadorBD.borrar(dniB);
+				v.mostrarMensaje("Clientes borrados: "+ filasB);
 				break;
+			
 			case 4:
-				operadorBD.leer();
+				VentanaLeer vl=new VentanaLeer();
+				operadorBD.leer(vl);
 				break;
+			
 			case 5:
 				System.out.println("SALIENDO");
 				break;

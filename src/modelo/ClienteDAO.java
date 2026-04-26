@@ -8,9 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import vista.VentanaLeer;
+
 public class ClienteDAO {
 
     private ConexionBD conexionBD;
+ 
     
     /**
      * inicializar la conexion
@@ -50,29 +53,31 @@ public class ClienteDAO {
         }
     }
     //READ
-    public void leer() {
+    public void leer(VentanaLeer v) {
 
         String sql = "SELECT * FROM CLIENTES";
 
         try {
-           PreparedStatement ps =conexionBD.getConexion().prepareStatement(sql);
+            v.setVisible(true);
 
-           ResultSet rs = ps.executeQuery();
+            PreparedStatement ps = conexionBD.getConexion().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            v.getModelo().setRowCount(0); 
 
             while (rs.next()) {
                 String dni = rs.getString("DNI");
                 String nombre = rs.getString("NOMBRE");
-                String apellidos = rs.getString("APELIIDOS");
+                String apellidos = rs.getString("APELIIDOS"); 
                 int edad = rs.getInt("EDAD");
 
-                System.out.println(dni + " - " + nombre + " - " + apellidos + " - " + edad);
+                v.getModelo().addRow(new Object[]{dni, nombre, apellidos, edad});
             }
 
         } catch (Exception e) {
             System.out.println("Error : " + e.getMessage());
         }
     }
-    
     
     //UPDATE
     public int actualizarEdad(String dni, int nuevaEdad) {
